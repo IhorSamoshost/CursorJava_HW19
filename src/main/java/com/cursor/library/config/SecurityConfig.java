@@ -28,10 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/users/login").anonymous()
-                .antMatchers("/users/dummy", "/helloworld").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/users/login").anonymous()
+                    .antMatchers("/users/dummy", "/helloworld").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .formLogin()
+                    .and()
 //                .exceptionHandling().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
