@@ -1,6 +1,7 @@
 package com.cursor.library.config;
 
 import com.cursor.library.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -15,22 +16,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableJpaRepositories("com.cursor.library")
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
     private final JwtRequestFilter jwtRequestFilter;
-
-    public SecurityConfig(UserService userService, JwtRequestFilter jwtRequestFilter) {
-        this.userService = userService;
-        this.jwtRequestFilter = jwtRequestFilter;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/users/login").anonymous()
-                .antMatchers("/users/dummy").permitAll().
-                anyRequest().authenticated()
+                .antMatchers("/users/dummy").permitAll()
+                .antMatchers("/helloworld").permitAll()
+                .anyRequest().authenticated()
                 .and()
 //                .exceptionHandling().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);

@@ -13,7 +13,6 @@ import java.util.Set;
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled = true)
-//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class LibraryApplication {
     private final UserDao userDao;
     private final BCryptPasswordEncoder encoder;
@@ -29,10 +28,6 @@ public class LibraryApplication {
 
 
     @PostConstruct
-//    public void addRoles() {
-//        userDao.findByUserName("Igor").get().setPermissions(Set.of(UserPermission.ROLE_READ, UserPermission.ROLE_WRITE));
-//        userDao.findByUserName("Ivan").get().setPermissions(Set.of(UserPermission.ROLE_ADMIN));
-//    }
     public void addUsers() {
         var user1 = new User();
         user1.setUserName("Igor");

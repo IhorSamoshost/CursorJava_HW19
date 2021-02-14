@@ -6,18 +6,16 @@ import com.cursor.library.exceptions.BookNameIsNullException;
 import com.cursor.library.exceptions.BookNameIsTooLongException;
 import com.cursor.library.models.Book;
 import com.cursor.library.models.CreateBookDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
     public final BookDao bookDao;
-
-    public BookService(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
 
     public Book getById(final String bookId) {
         if (bookId == null || bookId.isBlank()) {

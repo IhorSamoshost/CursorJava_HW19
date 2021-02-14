@@ -1,19 +1,23 @@
 package com.cursor.library.models;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
+@RequiredArgsConstructor
+@NoArgsConstructor
+@Data
 public class Book {
 
     private String bookId;
     private String name;
     private String description;
-    private List<String > authors;
+    private List<String> authors;
     private int yearOfPublication;
     private int numberOfWords;
     private int rating;
-
-    public Book() {
-    }
 
     public Book(String bookId, String name, String description, List<String> authors, int yearOfPublication, int numberOfWords, int rating) {
         this.bookId = bookId;
@@ -27,62 +31,6 @@ public class Book {
 
     public Book(String bookId) {
         this.bookId = bookId;
-    }
-
-    public String getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<String> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(List<String> authors) {
-        this.authors = authors;
-    }
-
-    public int getYearOfPublication() {
-        return yearOfPublication;
-    }
-
-    public void setYearOfPublication(int yearOfPublication) {
-        this.yearOfPublication = yearOfPublication;
-    }
-
-    public int getNumberOfWords() {
-        return numberOfWords;
-    }
-
-    public void setNumberOfWords(int numberOfWords) {
-        this.numberOfWords = numberOfWords;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     @Override

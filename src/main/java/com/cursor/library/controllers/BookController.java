@@ -4,31 +4,23 @@ import com.cursor.library.daos.BookDao;
 import com.cursor.library.models.Book;
 import com.cursor.library.models.CreateBookDto;
 import com.cursor.library.services.BookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/")
+@RequiredArgsConstructor
 public class BookController {
 
     private final BookDao bookDao;
     private final BookService bookService;
-
-    public BookController(BookDao bookDao, BookService bookService) {
-        this.bookDao = bookDao;
-        this.bookService = bookService;
-    }
 
     @GetMapping(value = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
     @Secured({"ROLE_READ", "ROLE_ADMIN"})
